@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function generateCharacterData()
+			{
+				function person(name, race)
+				{
+					return {"name":name, "race":race};
+				}
+
+				var races = ["Leprechaun", "Carapacian", "Human", "Troll", "Cherub", "Consort", "Robot", "First Guardian", "Squiddle"];
+				var modifiers = ["Dead", "Doomed", "Grimdark", "Trickster", "Dream", "Cyborg", "Ancestor"];
+				var classes = ["Rogue", "Thief", "Heir", "Maid", "Page", "Knight", "Seer", "Mage", "Sylph", "Witch", "Bard", "Prince", "Muse", "Lord"];
+				var aspects = ["Time", "Space", "Void", "Light", "Mind", "Heart", "Rage", "Hope", "Doom", "Life", "Blood", "Breath"];
+
+				var people = [
+
+					person("Itchy",races[0]),
+					person("Doze",races[0]),
+					person("Trace",races[0]),
+					person("Clover",races[0]),
+					person("Fin",races[0]),
+					person("Die",races[0]),
+					person("Crowbar",races[0]),
+					person("Stitch",races[0]),
+					person("Sawbuck",races[0]),
+					person("Matchsticks",races[0]),
+					person("Eggs",races[0]),
+					person("Biscuits",races[0]),
+					person("Quarters",races[0]),
+					person("Cans",races[0]),
+					
+					person("WV",races[1]),
+					person("PM",races[1]),
+					person("AR",races[1]),
+					person("White Queen",races[1]),
+					person("White King",races[1]),
+					person("Black Queen",races[1]),
+					person("Black King",races[1]),
+					person("Jack Noir",races[1]),
+					person("DD",races[1]),
+					person("HB",races[1]),
+					person("CD",races[1]),
+					person("Ms. Paint",races[1]),
+					
+					person("Hussie",races[2]),
+					person("Sassacre",races[2]),
+					person("Dad",races[2]),
+					person("MSPA Reader",races[2]),
+					person("John",races[2]),
+					person("Rose",races[2]),
+					person("Dave",races[2]),
+					person("Jade",races[2]),
+					person("Jane",races[2]),
+					person("Roxy",races[2]),
+					person("Dirk",races[2]),
+					person("Jake",races[2]),
+
+					person("Aradia",races[3]),
+					person("Tavros",races[3]),
+					person("Sollux",races[3]),
+					person("Karkat",races[3]),
+					person("Nepeta",races[3]),
+					person("Kanaya",races[3]),
+					person("Terezi",races[3]),
+					person("Vriska",races[3]),
+					person("Equius",races[3]),
+					person("Gamzee",races[3]),
+					person("Eridan",races[3]),
+					person("Feferi",races[3]),
+					person("Damara",races[3]),
+					person("Rufioh",races[3]),
+					person("Mituna",races[3]),
+					person("Kankri",races[3]),
+					person("Meulin",races[3]),
+					person("Porrim",races[3]),
+					person("Latula",races[3]),
+					person("Aranea",races[3]),
+					person("Horuss",races[3]),
+					person("Kurloz",races[3]),
+					person("Cronus",races[3]),
+					person("Meenah",races[3]),
+					
+					person("Calliope",races[4]),
+					person("Caliborn",races[4]),
+					
+					person("Salamander",races[5]),
+					person("Turtle",races[5]),
+					person("Crocodile",races[5]),
+					person("Iguana",races[5]),
+					person("Pony",races[5]),
+					person("Cat",races[5]),
+					person("Dog",races[5]),
+					person("Crow",races[5]),
+					person("Bunny",races[5]),
+					person("Frog",races[5]),
+					
+					person("Sawtooth",races[6]),
+					person("Squarewave",races[6]),
+					
+					person("Doc Scratch",races[7])
+					
+				];
+				
+				return {"races":races, "modifiers":modifiers, "classes":classes, "aspects":aspects, "people":people};
+			}
+
+			function generateCharacter(data)
+			{
+				var finalName = "";
+				var person = Math.floor(Math.random()*data.people.length);
+				finalName += data.people[person].name;
+				var species = Math.floor(Math.random()*data.races.length);
+				if(data.races[species] != data.people[person].race)
+				{
+					finalName = data.races[species] + " " + finalName;
+				}
+				if(Math.random()>0.75)
+				{
+					var spritename = ""
+					var person2 = Math.floor(Math.random()*data.people.length);
+					spritename += data.people[person2].name;
+					var species2 = Math.floor(Math.random()*data.races.length);
+					if(data.races[species2] != data.people[person2].race)
+					{
+						spritename = data.races[species2] + " " + spritename;
+					}
+					
+					finalName += "-" + spritename + "sprite";
+				}
+				
+				for(var i = 0; i < Math.floor(Math.random()*data.modifiers.length); i ++)
+				{
+					if(Math.random()>0.6)
+					{
+						if(data.modifiers[i] == "Dream")
+						{
+							if(Math.random()>0.5)
+							{
+								finalName = "Derse " + data.modifiers[i] + " " + finalName;
+							}
+							else
+							{
+								finalName = "Prospit " + data.modifiers[i] + " " + finalName;
+							}
+						}
+						else
+						{
+							finalName = data.modifiers[i] + " " + finalName;
+						}
+					}
+				}
+				
+				if(Math.random()>0.6)
+				{
+					aspc = Math.floor(Math.random()*data.aspects.length);
+					clss = Math.floor(Math.random()*data.classes.length);
+					
+					finalName = "God Tier " + data.classes[clss] + " of " + data.aspects[aspc] + " " + finalName;
+				}
+				
+				if(Math.random()>0.8)
+				{
+					var cosrace = Math.floor(Math.random()*(data.races.length-1));
+					if (cosrace>=species) cosrace++; 
+					finalName = data.races[cosrace] + "sona " + finalName;
+				}
+				
+				if(Math.random()>0.8)
+				{
+					finalName += "bot"
+				}
+				
+				return finalName;
+			}
+
+			data = generateCharacterData();
+
+			function ectobiologize()
+			{
+				var h = document.getElementById('result');
+				h.innerHTML = generateCharacter(data);
+			}
+		</script>
+		<title>Potential Homestuck Character Generator</title>
+	</head>
+	<body align="center">
+		<h1 id="result"></h1>
+		<button onclick="ectobiologize();">Ectobiologize!</button>
+	</body>
+</html>
