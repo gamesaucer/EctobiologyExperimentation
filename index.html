@@ -127,10 +127,10 @@
 						spritename = data.races[species2] + " " + spritename;
 					}
 					
-					finalName += "-" + spritename + "sprite";
+					finalName += " &amp; " + spritename + "sprite";
 				}
 				
-				for(var i = 0; i < Math.floor(Math.random()*data.modifiers.length); i ++)
+				for(var i = data.modifiers.length -1; i >= 0 ; i --)
 				{
 					if(Math.random()>0.6)
 					{
